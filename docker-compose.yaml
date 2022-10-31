@@ -1,0 +1,48 @@
+
+
+version: "3.8"
+
+services:
+  api:
+    container_name: FastAPI
+    build: ./backend
+    ports:
+      - "80:80"
+    environment:
+        - SECRET_KEY=${SECRET_KEY}
+
+  # mongo:
+  #   image: mongo:5.0
+  #   restart: always
+  #   ports:
+  #     - "${DB_PORT}:${DB_PORT}"
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+  #     MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+  #   volumes:
+  #     - mongo-database:/database
+
+  # mongo_express:
+  #   image: mongo-express:1.0.0-alpha.4
+  #   restart: always
+  #   ports:
+  #     - "8081:8081"
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USER}
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+  #     ME_CONFIG_MONGODB_SERVER: mongo
+  #   depends_on:
+  #     - mongo # mongoコンテナが起動してから起動させる
+    
+  react:
+    container_name: react-web-app
+    image: node:18-alpine
+    volumes:
+      - ./frontend/app:/app
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    ports:
+      - 3000:3000
+
+volumes:
+  mongo-database:
