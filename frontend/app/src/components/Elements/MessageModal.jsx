@@ -13,6 +13,8 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
+import { createMessage } from "../../features/api/messages";
+
 export const MessageModal = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -20,6 +22,7 @@ export const MessageModal = () => {
         const message = document.getElementById("message").value;
         const apikey = document.getElementById("apikey").value;
         const isPublish = document.getElementById("isPublish").checked;
+        createMessage(message, apikey, isPublish);
         console.log(message, apikey, isPublish);
         setOpen(false);
     };

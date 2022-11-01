@@ -1,6 +1,6 @@
 import { axios } from "/app/src/lib/axios";
 
-export const createMessage = (secret, isPublish, content) => {
+export const createMessage = (content, secret, isPublish) => {
     return axios.post(
         "/messages",
         { content },
@@ -15,10 +15,4 @@ export const createMessage = (secret, isPublish, content) => {
             withCredentials: true,
         }
     );
-};
-
-export const getMessageList = () => {
-    return axios.get("/messages", {
-        withCredentials: true,
-    });
 };

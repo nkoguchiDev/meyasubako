@@ -1,7 +1,0 @@
-# api core paclage
-fastapi
-uvicorn[standard]
-
-pydantic[email]
-typing
-passlib[bcrypt]
