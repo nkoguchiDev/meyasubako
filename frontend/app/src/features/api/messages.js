@@ -1,4 +1,4 @@
-import { axios } from "/app/src/lib/axios";
+import { axios } from "../../lib/axios";
 
 export const createMessage = (content, secret, isPublish) => {
     return axios.post(

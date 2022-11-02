@@ -1,1 +1,1 @@
-from .message import MessageBase, MessageResponse  # noqa
+from .message import MessageBase, MessageCreate, MessageResponse  # noqa

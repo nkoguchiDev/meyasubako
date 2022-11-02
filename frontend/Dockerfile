@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY ./app /app
 
-RUN yarn --frozen-lockfile && \
-    yarn build
+RUN npm i --frozen-lockfile && \
+    npm run build
 
 FROM nginx:1.20-alpine
 

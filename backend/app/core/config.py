@@ -5,7 +5,7 @@ from pydantic import BaseSettings, validator, AnyHttpUrl
 class Settings(BaseSettings):
 
     # project settings
-    PROJECT_NAME: str = "sns"
+    PROJECT_NAME: str = "meyasubako"
     API_V1_STR: str = "/api/v1"
 
     # api setting
@@ -25,6 +25,13 @@ class Settings(BaseSettings):
         elif isinstance(v, (list, str)):
             return v
         raise ValueError(v)
+
+    # datastore settings
+    DB_USER: str
+    DB_PASSWORD: str
+    DB_HOST: str
+    DB_PORT: int
+    DB_NAME: str = PROJECT_NAME
 
 
 settings = Settings()

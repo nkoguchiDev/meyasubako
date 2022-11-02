@@ -2,6 +2,7 @@
 fastapi
 uvicorn[standard]
 
+mongoengine
 pydantic[email]
 typing
 passlib[bcrypt]

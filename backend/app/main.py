@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.api_v1.api import api_router
+from mongoengine import connect, disconnect
 
+from app.api.api_v1.api import api_router
 from app.core.config import settings
 
 app = FastAPI(title=settings.PROJECT_NAME,
@@ -20,6 +21,23 @@ if settings.BACKEND_CORS_ORIGINS:
     )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+
+@app.on_event("startup")
+def on_startup():
+    connect(
+        host=settings.DB_HOST,
+        port=settings.DB_PORT,
+        username=settings.DB_USER,
+        password=settings.DB_PASSWORD,
+        uuidRepresentation="standard",
+        alias='mongodb'
+    )
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    disconnect(alias='mongodb')
 
 
 @app.get("/health")
