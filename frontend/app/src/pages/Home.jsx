@@ -1,10 +1,12 @@
 import "./Home.css";
-import { MessageModal } from "../components/Elements";
-
+import { MessageModal, SubjectCard } from "../components/Elements";
 export const Home = () => {
     return (
-        <div id="messageModal">
-            <MessageModal />
+        <div>
+            <SubjectCard />
+            <div id="messageModal">
+                <MessageModal />
+            </div>
         </div>
     );
 };
