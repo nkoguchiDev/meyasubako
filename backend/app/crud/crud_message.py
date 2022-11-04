@@ -13,8 +13,7 @@ class CRUDMessage(CRUDBase[Message, MessageCreate, MessageCreate]):
 
     def create(
             self,
-            obj_in: MessageCreate,
-            user: User) -> Message:
+            obj_in: MessageCreate) -> Message:
 
         t_delta = datetime.timedelta(hours=9)
         JST = datetime.timezone(t_delta, 'JST')
