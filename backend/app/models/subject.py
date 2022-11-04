@@ -6,6 +6,7 @@ class Subject(Document):
     uuid = StringField(unique=True, required=True)
     _type = StringField(default="subject")
     name = StringField(required=True)
+    date = StringField(required=True)
 
     meta = {
         'db_alias': 'mongodb',
