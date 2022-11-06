@@ -1,2 +1,2 @@
-from .subject import User  # noqa
-from .message import Message  # noqa
+from .subject import Subject  # noqa
+from .opinion import Opinion  # noqa
