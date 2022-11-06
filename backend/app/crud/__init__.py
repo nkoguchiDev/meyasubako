@@ -1,2 +1,2 @@
-from .crud_user import user  # noqa
-from .crud_message import message  # noqa
+from .crud_subject import subject  # noqa
+from .crud_opinion import message  # noqa
