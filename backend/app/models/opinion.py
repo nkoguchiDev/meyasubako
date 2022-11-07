@@ -8,7 +8,7 @@ class Opinion(Document):
     uuid = StringField(unique=True, required=True)
     content = StringField(required=True)
     date = StringField(required=True)
-    opinion = ReferenceField(Subject)
+    subject = ReferenceField(Subject)
 
     meta = {
         'db_alias': 'meyasubako',
