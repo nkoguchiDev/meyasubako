@@ -21,4 +21,4 @@ class CRUDOpinion(CRUDBase[Opinion]):
         return Opinion.objects(uuid=uuid).first()
 
 
-message = CRUDOpinion(Opinion)
+opinion = CRUDOpinion(Opinion)
