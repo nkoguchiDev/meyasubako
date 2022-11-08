@@ -9,9 +9,9 @@ router = APIRouter()
 
 
 @router.get("", status_code=200, response_model=List[schemas.SubjectResponse])
-def get_message_list() -> Any:
+def get_subject_list() -> Any:
 
-    subject_list = crud.subject.get()
+    subject_list = crud.subject.get_list()
     return json.loads(subject_list.to_json())
 
 
@@ -21,3 +21,22 @@ def post_subject(subject_in: schemas.SubjectBase) -> Any:
     subject = crud.subject.create(name=subject_in.name)
 
     return json.loads(subject.to_json())
+
+
+@router.get("/{subject_id}/opinions", status_code=200,
+            response_model=List[schemas.OpinionResponse])
+def get_opinion_list(opinion_id: str) -> Any:
+
+    subject = crud.subject.get(uuid=opinion_id)
+    opinion_list = crud.opinion.get_list(subject=subject)
+    return json.loads(opinion_list.to_json())
+
+
+@router.post("/{subject_id}/opinions", status_code=201,
+             response_model=List[schemas.OpinionResponse])
+def post_opinion(opinion_id: str, opinion_in: schemas.OpinionBase) -> Any:
+
+    subject = crud.subject.get(uuid=opinion_id)
+    opinion = crud.opinion.create(subject=subject,
+                                  content=opinion_in.content)
+    return json.loads(opinion.to_json())
