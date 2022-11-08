@@ -4,6 +4,11 @@ from app.crud.base import CRUDBase
 
 
 class CRUDLike(CRUDBase[Like]):
+    def count(
+            self,
+            opinion: Opinion) -> int:
+
+        return Like.objects(opinion=opinion).count()
 
     def create(
             self,
