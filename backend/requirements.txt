@@ -1,8 +1,11 @@
-# api core paclage
-fastapi
-uvicorn[standard]
+# api core package
+fastapi             ==0.86.0
+uvicorn[standard]   ==0.19.0
 
-mongoengine
-pydantic[email]
-typing
-passlib[bcrypt]
+mongoengine         ==0.24.2
+pydantic[email]     ==1.10.2
+typing              ==3.7.4.3
+passlib[bcrypt]     ==1.7.4
+
+# test 
+pytest              ==7.2.0
