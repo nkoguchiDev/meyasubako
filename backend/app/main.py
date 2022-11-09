@@ -31,13 +31,13 @@ def on_startup():
         username=settings.DB_USER,
         password=settings.DB_PASSWORD,
         uuidRepresentation="standard",
-        alias='mongodb'
+        alias=settings.PROJECT_NAME
     )
 
 
 @app.on_event("shutdown")
 def shutdown_event():
-    disconnect(alias='mongodb')
+    disconnect(alias=settings.PROJECT_NAME)
 
 
 @app.get("/health")
