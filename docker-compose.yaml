@@ -9,48 +9,51 @@ services:
     ports:
       - "80:80"
     environment:
-        - HASHED_SECRET_KEY=${HASHED_SECRET_KEY}
+        - DB_HOST=mongo
+        - DB_PORT=${DB_PORT}
+        - DB_USER=${DB_USER}
+        - DB_PASSWORD=${DB_PASSWORD}
 
-  # mongo:
-  #   image: mongo:5.0
-  #   restart: always
-  #   ports:
-  #     - "${DB_PORT}:${DB_PORT}"
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
-  #     MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
-  #   volumes:
-  #     - mongo-database:/database
-
-  # mongo_express:
-  #   image: mongo-express:1.0.0-alpha.4
-  #   restart: always
-  #   ports:
-  #     - "8081:8081"
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USER}
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
-  #     ME_CONFIG_MONGODB_SERVER: mongo
-  #   depends_on:
-  #     - mongo # mongoコンテナが起動してから起動させる
-    
-  ui-develop:
-    container_name: meyasubako-ui-develop
-    image: node:18-alpine
+  mongo:
+    image: mongo:5.0
+    restart: always
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./frontend/app:/app
-    working_dir: /app
-    command: sh -c "npm install && npm start"
-    ports:
-      - 3001:3000
+      - mongo-database:/database
 
-  ui:
-    container_name: meyasubako-ui
-    build: ./frontend
+  mongo_express:
+    image: mongo-express:1.0.0-alpha.4
+    restart: always
     ports:
-      - "3000:80"
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: mongo
     depends_on:
-      - ui-develop
+      - mongo # mongoコンテナが起動してから起動させる
+    
+  # ui-develop:
+  #   container_name: meyasubako-ui-develop
+  #   image: node:18-alpine
+  #   volumes:
+  #     - ./frontend/app:/app
+  #   working_dir: /app
+  #   command: sh -c "npm install && npm start"
+  #   ports:
+  #     - 3001:3000
+
+  # ui:
+  #   container_name: meyasubako-ui
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:80"
+  #   depends_on:
+  #     - ui-develop
 
 volumes:
   mongo-database:
