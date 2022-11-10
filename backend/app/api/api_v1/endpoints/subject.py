@@ -25,18 +25,18 @@ def post_subject(subject_in: schemas.SubjectBase) -> Any:
 
 @router.get("/{subject_id}/opinions", status_code=200,
             response_model=List[schemas.OpinionResponse])
-def get_opinion_list(opinion_id: str) -> Any:
+def get_opinion_list(subject_id: str) -> Any:
 
-    subject = crud.subject.get(uuid=opinion_id)
+    subject = crud.subject.get(uuid=subject_id)
     opinion_list = crud.opinion.get_list(subject=subject)
     return json.loads(opinion_list.to_json())
 
 
 @router.post("/{subject_id}/opinions", status_code=201,
-             response_model=List[schemas.OpinionResponse])
-def post_opinion(opinion_id: str, opinion_in: schemas.OpinionBase) -> Any:
+             response_model=schemas.OpinionResponse)
+def post_opinion(subject_id: str, opinion_in: schemas.OpinionBase) -> Any:
 
-    subject = crud.subject.get(uuid=opinion_id)
+    subject = crud.subject.get(uuid=subject_id)
     opinion = crud.opinion.create(subject=subject,
                                   content=opinion_in.content)
     return json.loads(opinion.to_json())
