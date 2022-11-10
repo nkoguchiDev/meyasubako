@@ -6,6 +6,7 @@ from app.models import Opinion
 
 class Like(Document):
     uuid = StringField(unique=True, required=True)
+    date = StringField(required=True)
     opinion = ReferenceField(Opinion)
 
     meta = {
