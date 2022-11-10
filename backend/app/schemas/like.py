@@ -10,7 +10,9 @@ class LikeBase(BaseModel):
 
 class LikeCreate(LikeBase):
     uuid: str
+    count: int
 
 
 class LikeResponse(LikeBase):
     uuid: str
+    count: int

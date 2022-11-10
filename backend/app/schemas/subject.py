@@ -10,9 +10,9 @@ class SubjectBase(BaseModel):
 
 class SubjectCreate(SubjectBase):
     uuid: str
-    date: bool
+    date: str
 
 
 class SubjectResponse(SubjectBase):
     uuid: str
-    date: bool
+    date: str

@@ -10,9 +10,9 @@ class OpinionBase(BaseModel):
 
 class OpinionCreate(OpinionBase):
     uuid: str
-    date: bool
+    date: str
 
 
 class OpinionResponse(OpinionBase):
     uuid: str
-    date: bool
+    date: str
