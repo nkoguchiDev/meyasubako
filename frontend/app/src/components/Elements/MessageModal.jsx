@@ -11,14 +11,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 
+import { createSubject } from "../../features/api/subject";
+
 export const MessageModal = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const pushOK = () => {
-        const message = document.getElementById("message").value;
-        const apikey = document.getElementById("apikey").value;
-        const isPublish = document.getElementById("isPublish").checked;
-        console.log(message, apikey, isPublish);
+        const subjectName = document.getElementById("subjectName").value;
+        createSubject(subjectName);
         setOpen(false);
     };
     const pushCancel = () => {
