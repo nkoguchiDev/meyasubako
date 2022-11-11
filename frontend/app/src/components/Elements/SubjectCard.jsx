@@ -13,10 +13,12 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Badge from "@mui/material/Badge";
+import { pink } from "@mui/material/colors";
 
-// import { getMessageList } from "./../../../features/messages/api/getMessageList";
-// import { deleteMessage } from "../../../features/api/messages";
 import { ReplyModal } from "./ReplyModal";
+
+import { getSubjectList } from "../../features/api/subject";
 
 const CardList = styled.li`
     display: block;
@@ -24,37 +26,32 @@ const CardList = styled.li`
 `;
 
 export const SubjectCard = () => {
-    // const navigate = useNavigate();
-    // const [events, setEvents] = React.useState([]);
+    const navigate = useNavigate();
+    const [subjectList, setSubjectList] = React.useState([]);
+    const [isLike, setIsLike] = React.useState(false);
 
-    // useEffect(() => {
-    //     return () => {
-    //         setMessagesToCards();
-    //     };
-    // }, []);
+    useEffect(() => {
+        return () => {
+            getSubjectList().then((response) => {
+                setSubjectList(response);
+            });
+        };
+    }, []);
 
-    // const setMessagesToCards = () => {
-    //     return getMessageList().then(
-    //         (result) => setEvents(result),
-    //         (error) => navigate("/forbidden")
-    //     );
-    // };
-    // const deleteEventCard = (id) => {
-    //     deleteMessage(id);
+    const pushLike = () => {
+        setIsLike(isLike ? false : true);
+    };
 
-    //     window.location.reload();
-    // };
-    const events = [{ name: "what your q ?", content: "description", date: "date" }];
     return (
         <div>
             <ul id="events">
-                {events.map((e, i) => (
+                {subjectList.map((subject, i) => (
                     <CardList id={i} key={i}>
                         <Card variant="outlined" sx={{ maxWidth: 350, margin: "auto" }}>
                             <CardHeader
                                 avatar={
                                     <Avatar
-                                        alt={e.name}
+                                        alt={subject.name}
                                         src={`${process.env.PUBLIC_URL}/icon.png`}
                                     />
                                 }
@@ -63,18 +60,25 @@ export const SubjectCard = () => {
                                         <MoreVertIcon />
                                     </IconButton>
                                 }
-                                title={e.name}
-                                subheader={e.date}
+                                title={subject.name}
+                                subheader={subject.date}
                             />
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary">
-                                    {e.content}
+                                    {subject.name}
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
+                                <IconButton
+                                    aria-label="add to favorites"
+                                    sx={{ color: pink[isLike ? 500 : 0] }}
+                                    onClick={pushLike}
+                                >
                                     <FavoriteIcon />
                                 </IconButton>
+                                <Typography variant="body2" color="text.secondary">
+                                    {subject.name}
+                                </Typography>
                                 <ReplyModal />
                             </CardActions>
                         </Card>
