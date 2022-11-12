@@ -6,6 +6,7 @@ from pydantic import BaseModel
 # Shared properties
 class SubjectBase(BaseModel):
     name: str
+    classification: str = ""
 
 
 class SubjectCreate(SubjectBase):
