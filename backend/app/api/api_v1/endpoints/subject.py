@@ -18,7 +18,9 @@ def get_subject_list() -> Any:
 @router.post("", status_code=201, response_model=schemas.SubjectResponse)
 def post_subject(subject_in: schemas.SubjectBase) -> Any:
 
-    subject = crud.subject.create(name=subject_in.name)
+    subject = crud.subject.create(
+        name=subject_in.name,
+        classification=subject_in.classification)
 
     return json.loads(subject.to_json())
 
