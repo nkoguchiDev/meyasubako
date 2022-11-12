@@ -6,6 +6,7 @@ class Subject(Document):
     uuid = StringField(unique=True, required=True)
     name = StringField(required=True)
     date = StringField(required=True)
+    classification = StringField(required=True)
 
     meta = {
         'db_alias': 'meyasubako',
