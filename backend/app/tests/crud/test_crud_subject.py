@@ -8,6 +8,7 @@ def test_create_subject() -> None:
 
     assert hasattr(subject, "uuid")
     assert hasattr(subject, "name")
+    assert hasattr(subject, "classification")
     assert subject.name == subject_name
 
 
