@@ -28,6 +28,6 @@ def test_create_subjects_response():
     )
     assert create_response.status_code == 201
 
-    get_response = client.get(f"{api_base_path}/subjects/{create_response.json().get("uuid")}")
-    assert get_response.json().get("name", None) == subject_name
-    assert get_response.json().get("classification", None) == subject_classification
+    get_response = client.get(
+        f"{api_base_path}/subjects")
+    assert create_response.json() in get_response.json()
