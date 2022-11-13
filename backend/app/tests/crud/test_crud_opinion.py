@@ -3,7 +3,9 @@ from app.tests import utils
 
 
 def test_create_subject() -> None:
-    subject = crud.subject.create(name=utils.random_lower_string())
+    subject = crud.subject.create(
+        name=utils.random_lower_string(),
+        classification=utils.random_lower_string())
     content = utils.random_lower_string()
     opinion = crud.opinion.create(
         subject=subject,
@@ -14,7 +16,9 @@ def test_create_subject() -> None:
 
 
 def test_get_subject() -> None:
-    subject = crud.subject.create(name=utils.random_lower_string())
+    subject = crud.subject.create(
+        name=utils.random_lower_string(),
+        classification=utils.random_lower_string())
     content = utils.random_lower_string()
     create_opinion = crud.opinion.create(
         subject=subject,
@@ -27,7 +31,9 @@ def test_get_subject() -> None:
 
 
 def test_list_subject() -> None:
-    subject = crud.subject.create(name=utils.random_lower_string())
+    subject = crud.subject.create(
+        name=utils.random_lower_string(),
+        classification=utils.random_lower_string())
     opinion_01 = crud.opinion.create(
         subject=subject,
         content=utils.random_lower_string())

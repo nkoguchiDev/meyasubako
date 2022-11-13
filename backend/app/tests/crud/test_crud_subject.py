@@ -4,7 +4,10 @@ from app.tests import utils
 
 def test_create_subject() -> None:
     subject_name = utils.random_lower_string()
-    subject = crud.subject.create(name=subject_name)
+    subject_classification = utils.random_lower_string()
+    subject = crud.subject.create(
+        name=subject_name,
+        classification=subject_classification)
 
     assert hasattr(subject, "uuid")
     assert hasattr(subject, "name")
@@ -14,18 +17,26 @@ def test_create_subject() -> None:
 
 def test_get_subject() -> None:
     subject_name = utils.random_lower_string()
-    create_subject = crud.subject.create(name=subject_name)
+    subject_classification = utils.random_lower_string()
+    create_subject = crud.subject.create(
+        name=subject_name,
+        classification=subject_classification)
     get_subject = crud.subject.get(uuid=create_subject.uuid)
 
     assert create_subject == get_subject
     assert create_subject.uuid == get_subject.uuid
     assert create_subject.name == get_subject.name
+    assert create_subject.classification == get_subject.classification
     assert create_subject.date == get_subject.date
 
 
 def test_list_subject() -> None:
-    subject_01 = crud.subject.create(name=utils.random_lower_string())
-    subject_02 = crud.subject.create(name=utils.random_lower_string())
+    subject_01 = crud.subject.create(
+        name=utils.random_lower_string(),
+        classification=utils.random_lower_string())
+    subject_02 = crud.subject.create(
+        name=utils.random_lower_string(),
+        classification=utils.random_lower_string())
 
     subject_list = crud.subject.get_list()
 
