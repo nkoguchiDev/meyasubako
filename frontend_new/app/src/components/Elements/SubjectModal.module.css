@@ -1,0 +1,19 @@
+.iconPlus {
+	color: var(--icon-color);
+	width: 24px;
+	height: 24px;
+	position: relative;
+}
+.iconPlus:before,
+.iconPlus:after {
+	content: "";
+	position: absolute;
+	top: 12px;
+	width: 24px;
+	height: var(--icon-width);
+	background-color: currentColor;
+}
+.iconPlus:after {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
