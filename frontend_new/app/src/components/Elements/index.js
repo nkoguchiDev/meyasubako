@@ -1,1 +1,0 @@
-export { SubjectModal } from "./SubjectModal";
