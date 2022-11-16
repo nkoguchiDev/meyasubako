@@ -1,2 +1,2 @@
-export { MessageModal } from "./MessageModal";
+export { SubjectModal } from "./SubjectModal";
 export { SubjectCard } from "./SubjectCard";
