@@ -65,7 +65,7 @@ export const SubjectCard = () => {
                             />
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary">
-                                    {subject.name}
+                                    {subject.classification}
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
