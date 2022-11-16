@@ -1,9 +1,9 @@
 import { axios } from "../../lib/axios";
 
-export const createSubject = (name) => {
+export const createSubject = (name, classification) => {
     return axios.post(
         "/subjects",
-        { name },
+        { name, classification },
         {
             headers: {
                 "Content-Type": "application/json",
