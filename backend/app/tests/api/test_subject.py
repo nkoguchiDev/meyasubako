@@ -31,3 +31,28 @@ def test_create_subjects_response():
     get_response = client.get(
         f"{api_base_path}/subjects")
     assert create_response.json() in get_response.json()
+
+
+def test_create_opinions_response():
+    subject_name = utils.random_lower_string()
+    subject_classification = utils.random_lower_string()
+    subject = client.post(
+        f"{api_base_path}/subjects",
+        headers=post_headers,
+        json={
+            "name": subject_name,
+            "classification": subject_classification
+        },
+    )
+    subject_id = subject.json().get("uuid", None)
+
+    opinion_content = utils.random_lower_string()
+    opinion = client.post(
+        f"{api_base_path}/subjects/{subject_id}/opinions",
+        headers=post_headers,
+        json={
+            "content": opinion_content
+        }
+    )
+
+    assert opinion.json().get("content") == opinion_content
