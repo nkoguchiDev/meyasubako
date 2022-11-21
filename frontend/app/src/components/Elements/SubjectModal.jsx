@@ -22,7 +22,7 @@ export const SubjectModal = () => {
     const handleOpen = () => setOpen(true);
     const pushOK = () => {
         const subjectName = document.getElementById("subjectName").value;
-        const subjectClass = document.getElementById("subjectClass").value;
+        const subjectClass = classification;
         createSubject(subjectName, subjectClass);
         setOpen(false);
     };
