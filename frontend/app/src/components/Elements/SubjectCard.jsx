@@ -5,18 +5,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Badge from "@mui/material/Badge";
-import { pink } from "@mui/material/colors";
-
-import { ReplyModal } from "./ReplyModal";
+import { CardActionArea } from "@mui/material";
+import BuildIcon from "@mui/icons-material/Build";
 
 import { getSubjectList } from "../../features/api/subject";
 
@@ -48,39 +40,14 @@ export const SubjectCard = () => {
                 {subjectList.map((subject, i) => (
                     <CardList id={i} key={i}>
                         <Card variant="outlined" sx={{ maxWidth: 350, margin: "auto" }}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar
-                                        alt={subject.name}
-                                        src={`${process.env.PUBLIC_URL}/icon.png`}
-                                    />
-                                }
-                                action={
-                                    <IconButton aria-label="settings">
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                }
-                                title={subject.name}
-                                subheader={subject.date}
-                            />
-                            <CardContent>
-                                <Typography variant="body2" color="text.secondary">
-                                    {subject.classification}
-                                </Typography>
-                            </CardContent>
-                            <CardActions disableSpacing>
-                                <IconButton
-                                    aria-label="add to favorites"
-                                    sx={{ color: pink[isLike ? 500 : 0] }}
-                                    onClick={pushLike}
-                                >
-                                    <FavoriteIcon />
-                                </IconButton>
-                                <Typography variant="body2" color="text.secondary">
-                                    {subject.name}
-                                </Typography>
-                                <ReplyModal />
-                            </CardActions>
+                            <CardActionArea>
+                                <CardContent sx={{ display: "flex" }}>
+                                    <BuildIcon sx={{ marginRight: "5px" }} />
+                                    <Typography variant="h5" component="div">
+                                        {subject.name}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
                         </Card>
                     </CardList>
                 ))}
