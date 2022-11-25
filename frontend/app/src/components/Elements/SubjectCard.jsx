@@ -46,7 +46,7 @@ export const SubjectCard = () => {
 
     return (
         <div>
-            <ul id="events">
+            <ul id="subjects">
                 {subjectList.map((subject, i) => (
                     <CardList id={i} key={i}>
                         <Card
